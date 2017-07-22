@@ -1,0 +1,11 @@
+uint32 fs
+int32 px
+int32 py
+int32 pz
+int16 pe
+int16 pc
+int16 vx
+int16 vy
+int16 vz
+int16 ve
+int16 vc
