@@ -1,8 +1,8 @@
-prefix=/home/bj/workspace/ros/auto_car_bak/devel
+prefix=/home/bj/workspace/ros/car_ros/devel
 
 Name: rplidar_ros
 Description: Description of rplidar_ros
 Version: 1.5.7
 Cflags: 
-Libs: -L/home/bj/workspace/ros/auto_car_bak/devel/lib 
+Libs: -L/home/bj/workspace/ros/car_ros/devel/lib 
 Requires: 

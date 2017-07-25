@@ -1,0 +1,8 @@
+prefix=/home/bj/workspace/ros/car_ros/devel
+
+Name: relocator
+Description: Description of relocator
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/bj/workspace/ros/car_ros/devel/lib 
+Requires: 

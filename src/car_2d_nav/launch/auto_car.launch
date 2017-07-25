@@ -11,7 +11,7 @@
   </node>
 
   <!-- Run the kylinbot_core -->
-  <include file="$(find kylinbot_core)/launch/kylinbot.launch"/>
+  <include file="$(find jetbot)/launch/jetbot.launch"/>
   
   <!-- Run the tf -->
   <node pkg="tf_tree"  type="tf_broadcaster" name="robot_tf_broadcaster" output="screen"/>
