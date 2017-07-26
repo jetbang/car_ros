@@ -50,10 +50,10 @@ int main(int argc, char **argv)
   
   ros::init(argc, argv, "jetbot_cmd_vel");
 
-  int spin_rate = 100;
+  int spin_rate = 50;
   
   ros::NodeHandle np("~");
-  np.param<int>("spin_rate", spin_rate, 30); 
+  np.param<int>("spin_rate", spin_rate, 50); 
   
   ros::NodeHandle n;
 
