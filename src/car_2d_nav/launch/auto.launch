@@ -23,10 +23,14 @@
   <node pkg="tf_tree"  type="tf_broadcaster" name="robot_tf_broadcaster" output="screen"/>
    -->
 
-  <!-- Run the map server -->
+  <!-- Run the map server --
   <node name="map_server" pkg="map_server" type="map_server" args="$(find car_2d_nav)/map/RMmap-2.yaml">
   </node>
+   -->
  
+  <!-- Run slam -->
+  <include file="$(find car_2d_nav)/move_base_config/slam_gmapping.xml"/>  
+  
   <!-- Run the amcl location -->
   <include file="$(find amcl)/examples/amcl_omni.launch"/>
 
