@@ -42,25 +42,25 @@ class Uwb {
         this.x = initObj.x
       }
       else {
-        this.x = 0;
+        this.x = 0.0;
       }
       if (initObj.hasOwnProperty('y')) {
         this.y = initObj.y
       }
       else {
-        this.y = 0;
+        this.y = 0.0;
       }
       if (initObj.hasOwnProperty('z')) {
         this.z = initObj.z
       }
       else {
-        this.z = 0;
+        this.z = 0.0;
       }
       if (initObj.hasOwnProperty('w')) {
         this.w = initObj.w
       }
       else {
-        this.w = 0;
+        this.w = 0.0;
       }
     }
   }
@@ -72,13 +72,13 @@ class Uwb {
     // Serialize message field [flag]
     bufferOffset = _serializer.uint8(obj.flag, buffer, bufferOffset);
     // Serialize message field [x]
-    bufferOffset = _serializer.uint32(obj.x, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.x, buffer, bufferOffset);
     // Serialize message field [y]
-    bufferOffset = _serializer.uint32(obj.y, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.y, buffer, bufferOffset);
     // Serialize message field [z]
-    bufferOffset = _serializer.uint32(obj.z, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.z, buffer, bufferOffset);
     // Serialize message field [w]
-    bufferOffset = _serializer.uint32(obj.w, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.w, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -91,13 +91,13 @@ class Uwb {
     // Deserialize message field [flag]
     data.flag = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [x]
-    data.x = _deserializer.uint32(buffer, bufferOffset);
+    data.x = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [y]
-    data.y = _deserializer.uint32(buffer, bufferOffset);
+    data.y = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [z]
-    data.z = _deserializer.uint32(buffer, bufferOffset);
+    data.z = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [w]
-    data.w = _deserializer.uint32(buffer, bufferOffset);
+    data.w = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
@@ -112,7 +112,7 @@ class Uwb {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'd081c1ded50e40b797a8b93692c3f0f6';
+    return '07f717daa1ab5369ea12dffa912f8623';
   }
 
   static messageDefinition() {
@@ -120,10 +120,10 @@ class Uwb {
     return `
     uint32 frame_id
     uint8 flag
-    uint32 x
-    uint32 y
-    uint32 z
-    uint32 w
+    float32 x
+    float32 y
+    float32 z
+    float32 w
     
     `;
   }
@@ -152,28 +152,28 @@ class Uwb {
       resolved.x = msg.x;
     }
     else {
-      resolved.x = 0
+      resolved.x = 0.0
     }
 
     if (msg.y !== undefined) {
       resolved.y = msg.y;
     }
     else {
-      resolved.y = 0
+      resolved.y = 0.0
     }
 
     if (msg.z !== undefined) {
       resolved.z = msg.z;
     }
     else {
-      resolved.z = 0
+      resolved.z = 0.0
     }
 
     if (msg.w !== undefined) {
       resolved.w = msg.w;
     }
     else {
-      resolved.w = 0
+      resolved.w = 0.0
     }
 
     return resolved;

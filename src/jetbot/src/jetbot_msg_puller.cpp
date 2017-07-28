@@ -60,11 +60,11 @@ void publishUwbMsg(ros::Publisher *pub, const UwbMsg_t* uwbMsg)
   jetbot::Uwb uwb;
   
   uwb.frame_id = uwbMsg->frame_id;
-  uwb.flag = uwbMsg->flag;
-  uwb.x = uwbMsg->x;
-  uwb.y = uwbMsg->y;
-  uwb.z = uwbMsg->z;
-  uwb.w = uwbMsg->w;
+  uwb.flag = uwbMsg->data.flag;
+  uwb.x = uwbMsg->data.x;
+  uwb.y = uwbMsg->data.y;
+  uwb.z = uwbMsg->data.z;
+  uwb.w = uwbMsg->data.w;
  
   pub->publish(uwb);
 }

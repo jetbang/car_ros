@@ -26,18 +26,18 @@ struct Uwb_
   Uwb_()
     : frame_id(0)
     , flag(0)
-    , x(0)
-    , y(0)
-    , z(0)
-    , w(0)  {
+    , x(0.0)
+    , y(0.0)
+    , z(0.0)
+    , w(0.0)  {
     }
   Uwb_(const ContainerAllocator& _alloc)
     : frame_id(0)
     , flag(0)
-    , x(0)
-    , y(0)
-    , z(0)
-    , w(0)  {
+    , x(0.0)
+    , y(0.0)
+    , z(0.0)
+    , w(0.0)  {
   (void)_alloc;
     }
 
@@ -49,16 +49,16 @@ struct Uwb_
    typedef uint8_t _flag_type;
   _flag_type flag;
 
-   typedef uint32_t _x_type;
+   typedef float _x_type;
   _x_type x;
 
-   typedef uint32_t _y_type;
+   typedef float _y_type;
   _y_type y;
 
-   typedef uint32_t _z_type;
+   typedef float _z_type;
   _z_type z;
 
-   typedef uint32_t _w_type;
+   typedef float _w_type;
   _w_type w;
 
 
@@ -138,12 +138,12 @@ struct MD5Sum< ::jetbot::Uwb_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "d081c1ded50e40b797a8b93692c3f0f6";
+    return "07f717daa1ab5369ea12dffa912f8623";
   }
 
   static const char* value(const ::jetbot::Uwb_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xd081c1ded50e40b7ULL;
-  static const uint64_t static_value2 = 0x97a8b93692c3f0f6ULL;
+  static const uint64_t static_value1 = 0x07f717daa1ab5369ULL;
+  static const uint64_t static_value2 = 0xea12dffa912f8623ULL;
 };
 
 template<class ContainerAllocator>
@@ -164,10 +164,10 @@ struct Definition< ::jetbot::Uwb_<ContainerAllocator> >
   {
     return "uint32 frame_id\n\
 uint8 flag\n\
-uint32 x\n\
-uint32 y\n\
-uint32 z\n\
-uint32 w\n\
+float32 x\n\
+float32 y\n\
+float32 z\n\
+float32 w\n\
 ";
   }
 
@@ -215,13 +215,13 @@ struct Printer< ::jetbot::Uwb_<ContainerAllocator> >
     s << indent << "flag: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flag);
     s << indent << "x: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.x);
+    Printer<float>::stream(s, indent + "  ", v.x);
     s << indent << "y: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.y);
+    Printer<float>::stream(s, indent + "  ", v.y);
     s << indent << "z: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.z);
+    Printer<float>::stream(s, indent + "  ", v.z);
     s << indent << "w: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.w);
+    Printer<float>::stream(s, indent + "  ", v.w);
   }
 };
 

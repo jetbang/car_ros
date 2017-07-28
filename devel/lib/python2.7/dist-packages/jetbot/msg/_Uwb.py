@@ -7,18 +7,18 @@ import struct
 
 
 class Uwb(genpy.Message):
-  _md5sum = "d081c1ded50e40b797a8b93692c3f0f6"
+  _md5sum = "07f717daa1ab5369ea12dffa912f8623"
   _type = "jetbot/Uwb"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint32 frame_id
 uint8 flag
-uint32 x
-uint32 y
-uint32 z
-uint32 w
+float32 x
+float32 y
+float32 z
+float32 w
 """
   __slots__ = ['frame_id','flag','x','y','z','w']
-  _slot_types = ['uint32','uint8','uint32','uint32','uint32','uint32']
+  _slot_types = ['uint32','uint8','float32','float32','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -42,20 +42,20 @@ uint32 w
       if self.flag is None:
         self.flag = 0
       if self.x is None:
-        self.x = 0
+        self.x = 0.
       if self.y is None:
-        self.y = 0
+        self.y = 0.
       if self.z is None:
-        self.z = 0
+        self.z = 0.
       if self.w is None:
-        self.w = 0
+        self.w = 0.
     else:
       self.frame_id = 0
       self.flag = 0
-      self.x = 0
-      self.y = 0
-      self.z = 0
-      self.w = 0
+      self.x = 0.
+      self.y = 0.
+      self.z = 0.
+      self.w = 0.
 
   def _get_types(self):
     """
@@ -70,7 +70,7 @@ uint32 w
     """
     try:
       _x = self
-      buff.write(_get_struct_IB4I().pack(_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w))
+      buff.write(_get_struct_IB4f().pack(_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -84,7 +84,7 @@ uint32 w
       _x = self
       start = end
       end += 21
-      (_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w,) = _get_struct_IB4I().unpack(str[start:end])
+      (_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w,) = _get_struct_IB4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -98,7 +98,7 @@ uint32 w
     """
     try:
       _x = self
-      buff.write(_get_struct_IB4I().pack(_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w))
+      buff.write(_get_struct_IB4f().pack(_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -113,7 +113,7 @@ uint32 w
       _x = self
       start = end
       end += 21
-      (_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w,) = _get_struct_IB4I().unpack(str[start:end])
+      (_x.frame_id, _x.flag, _x.x, _x.y, _x.z, _x.w,) = _get_struct_IB4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -122,9 +122,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_IB4I = None
-def _get_struct_IB4I():
-    global _struct_IB4I
-    if _struct_IB4I is None:
-        _struct_IB4I = struct.Struct("<IB4I")
-    return _struct_IB4I
+_struct_IB4f = None
+def _get_struct_IB4f():
+    global _struct_IB4f
+    if _struct_IB4f is None:
+        _struct_IB4f = struct.Struct("<IB4f")
+    return _struct_IB4f
