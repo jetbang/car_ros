@@ -83,8 +83,10 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
+  message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> imu_pose_sub(n, "jetbot_imu_pose", 100);
   message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> uwb_pose_sub(n, "jetbot_uwb_pose", 100);  
   message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> amcl_pose_sub(n, "amcl_pose", 100);
+  
   ros::Publisher pose_pub = n.advertise<geometry_msgs::PoseWithCovarianceStamped>("initialpose", 100);
   pubptr = &pose_pub;
 

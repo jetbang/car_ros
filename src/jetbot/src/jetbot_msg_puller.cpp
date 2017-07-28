@@ -17,6 +17,7 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "sensor_msgs/Imu.h"
 
 #include <sstream>
 
@@ -25,6 +26,8 @@
 
 #include "jetbot/Bot.h"
 #include "jetbot/Uwb.h"
+#include "jetbot/Imu.h"
+#include "jetbot/Mag.h"
 #include "jetbot/VDBus.h"
 #include "jetbot/ZGyro.h"
 
@@ -66,6 +69,52 @@ void publishUwbMsg(ros::Publisher *pub, const UwbMsg_t* uwbMsg)
   pub->publish(uwb);
 }
 
+void publishImuMsg(ros::Publisher *pub, const ImuMsg_t* imuMsg)
+{
+  jetbot::Imu imu;
+
+  imu.frame_id = imuMsg->frame_id;
+  
+  imu.ax = imuMsg->ax;
+  imu.ay = imuMsg->ay;
+  imu.az = imuMsg->az;
+  imu.gx = imuMsg->gx;
+  imu.gy = imuMsg->gy;
+  imu.gz = imuMsg->gz;
+  
+  pub->publish(imu);
+}
+
+void publishMagMsg(ros::Publisher *pub, const MagMsg_t* magMsg)
+{
+  jetbot::Mag mag;
+
+  mag.frame_id = magMsg->frame_id;
+  
+  mag.mx = magMsg->mx;
+  mag.my = magMsg->my;
+  mag.mz = magMsg->mz;
+  
+  pub->publish(mag);
+}
+
+/*
+void publishImuCov(ros::Publisher *pub, const ImuMsg_t* imuMsg)
+{
+  sensor_msgs::Imu imu;
+  
+  //imu.orientation = imuMsg->flag;
+  imu.angular_velocity.x = imuMsg->gx / IMU_MSG_VALUE_SCALE;
+  imu.angular_velocity.y = imuMsg->gy / IMU_MSG_VALUE_SCALE;
+  imu.angular_velocity.z = imuMsg->gz / IMU_MSG_VALUE_SCALE;
+  imu.linear_acceleration.x = imuMsg->ax / IMU_MSG_VALUE_SCALE;
+  imu.linear_acceleration.y = imuMsg->ay / IMU_MSG_VALUE_SCALE;
+  imu.linear_acceleration.z = imuMsg->az / IMU_MSG_VALUE_SCALE;
+ 
+  pub->publish(imu);
+}
+*/
+
 void publishZGyroMsg(ros::Publisher *pub, const ZGyroMsg_t* zgyroMsg)
 {
   jetbot::ZGyro zgyro;
@@ -99,8 +148,10 @@ int main(int argc, char **argv)
 
   FIFO_Init(&rx_fifo, rx_buf[0], BUF_LEN);
 
-  UwbMsg_t uwbMsg;
   BotMsg_t botMsg;
+  UwbMsg_t uwbMsg;
+  ImuMsg_t imuMsg;
+  MagMsg_t magMsg;
   ZGyroMsg_t zgyroMsg;
   VDBusMsg_t vdbusMsg;
   
@@ -126,6 +177,8 @@ int main(int argc, char **argv)
 
   ros::Publisher bot_pub = n.advertise<jetbot::Bot>("jetbot_msg_puller/bot", 1000); // Bot odo message feedback
   ros::Publisher uwb_pub = n.advertise<jetbot::Uwb>("jetbot_msg_puller/uwb", 1000); // UWB Locater
+  ros::Publisher imu_pub = n.advertise<jetbot::Imu>("jetbot_msg_puller/imu", 1000); // IMU onboard
+  ros::Publisher mag_pub = n.advertise<jetbot::Mag>("jetbot_msg_puller/mag", 1000); // Mag onboard
   ros::Publisher zgyro_pub = n.advertise<jetbot::ZGyro>("jetbot_msg_puller/zgyro", 1000); // ZGyro feedback
   ros::Publisher vdbus_pub = n.advertise<jetbot::VDBus>("jetbot_msg_puller/vdbus", 1000); // VDBus feedback
   
@@ -162,6 +215,14 @@ int main(int argc, char **argv)
 
     if (Msg_Pop(&rx_fifo, rx_buf[1], &MSG_HEAD_OF(UWB), &uwbMsg)) {
       publishUwbMsg(&uwb_pub, &uwbMsg);
+    }
+
+    if (Msg_Pop(&rx_fifo, rx_buf[1], &MSG_HEAD_OF(IMU), &imuMsg)) {
+      publishImuMsg(&imu_pub, &imuMsg);
+    }
+
+    if (Msg_Pop(&rx_fifo, rx_buf[1], &MSG_HEAD_OF(MAG), &magMsg)) {
+      publishMagMsg(&mag_pub, &magMsg);
     }
     
     if (Msg_Pop(&rx_fifo, rx_buf[1], &MSG_HEAD_OF(ZGYRO), &zgyroMsg)) {

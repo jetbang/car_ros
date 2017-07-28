@@ -3,6 +3,8 @@ from ._CBus import *
 from ._ChassisState import *
 from ._DBus import *
 from ._Hcp import *
+from ._Imu import *
+from ._Mag import *
 from ._PantiltState import *
 from ._Rcp import *
 from ._Uwb import *

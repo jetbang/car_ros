@@ -17,6 +17,8 @@ add_message_files(
   CBus.msg
   Bot.msg
   Uwb.msg
+  Imu.msg
+  Mag.msg
   VRC.msg
   VHC.msg
   Rcp.msg
